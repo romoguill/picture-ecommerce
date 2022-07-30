@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { Context } from '../Context';
 
-function Image({ img, className, imgId }) {
+function Image({ img, className }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const { toggleFavorite } = useContext(Context);
@@ -24,12 +24,18 @@ function Image({ img, className, imgId }) {
         <>
           <i
             className="ri-heart-line favorite"
-            onClick={() => toggleFavorite(imgId)}
+            onClick={() => toggleFavorite(img.id)}
           ></i>
           <i className="ri-add-circle-line cart"></i>
         </>
       )}
-      <img src={img} className="image-grid" />
+      {img.isFavorite && (
+        <i
+          className="ri-heart-fill favorite"
+          onClick={() => toggleFavorite(img.id)}
+        ></i>
+      )}
+      <img src={img.url} className="image-grid" />
     </div>
   );
 }

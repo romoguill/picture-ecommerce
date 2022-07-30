@@ -8,14 +8,7 @@ function Photos() {
   const { allPhotos } = useContext(Context);
 
   const imagesElements = allPhotos.map((photo) => {
-    return (
-      <Image
-        key={photo.id}
-        imgId={photo.id}
-        img={photo.url}
-        className={getClass(photo.id)}
-      />
-    );
+    return <Image key={photo.id} img={photo} className={getClass(photo.id)} />;
   });
 
   return <main className="photos">{imagesElements}</main>;
