@@ -7,6 +7,16 @@ function ContextProvider(props) {
 
   const [allPhotos, setAllPhotos] = useState([]);
 
+  function toggleFavorite(photoId) {
+    setAllPhotos((prevAllPhotos) => {
+      return prevAllPhotos.map((photo) =>
+        photo.id === photoId
+          ? { ...photo, isFavorite: !photo.isFavorite }
+          : { ...photo }
+      );
+    });
+  }
+
   useEffect(() => {
     fetch(API_URL)
       .then((response) => response.json())
@@ -16,7 +26,9 @@ function ContextProvider(props) {
   }, []);
 
   return (
-    <Context.Provider value={{ allPhotos }}>{props.children}</Context.Provider>
+    <Context.Provider value={{ allPhotos, toggleFavorite }}>
+      {props.children}
+    </Context.Provider>
   );
 }
 

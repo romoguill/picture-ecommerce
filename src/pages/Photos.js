@@ -9,7 +9,12 @@ function Photos() {
 
   const imagesElements = allPhotos.map((photo) => {
     return (
-      <Image key={photo.id} img={photo.url} className={getClass(photo.id)} />
+      <Image
+        key={photo.id}
+        imgId={photo.id}
+        img={photo.url}
+        className={getClass(photo.id)}
+      />
     );
   });
 
