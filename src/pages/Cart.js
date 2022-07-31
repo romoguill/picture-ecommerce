@@ -29,11 +29,13 @@ function Cart() {
           currency: 'USD',
         })}
       </p>
-      <div className="order-button">
-        <button onClick={placeOrder}>
-          {isProcessing ? 'Ordering...' : 'Place Order'}
-        </button>
-      </div>
+      {cartItems.length > 0 && (
+        <div className="order-button">
+          <button onClick={placeOrder}>
+            {isProcessing ? 'Ordering...' : 'Place Order'}
+          </button>
+        </div>
+      )}
     </main>
   );
 }

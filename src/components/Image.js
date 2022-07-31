@@ -1,27 +1,16 @@
 import { useContext, useState } from 'react';
 import { Context } from '../Context';
 import PropTypes from 'prop-types';
+import useHover from '../hooks/useHover';
 
 function Image({ img, className }) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, elementRef] = useHover();
 
   const { toggleFavorite, addToCart, isItemInCart, removeFromCart } =
     useContext(Context);
 
-  function handleOnMouseEnter() {
-    setIsHovered(true);
-  }
-
-  function handleOnMouseLeave() {
-    setIsHovered(false);
-  }
-
   return (
-    <div
-      className={`${className} image-container`}
-      onMouseEnter={handleOnMouseEnter}
-      onMouseLeave={handleOnMouseLeave}
-    >
+    <div className={`${className} image-container`} ref={elementRef}>
       {isHovered && (
         <>
           <i
