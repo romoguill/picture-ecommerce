@@ -13,7 +13,13 @@ function Cart() {
     <main className="cart-page">
       <h1>Check out</h1>
       {cartItemElements}
-      <p className="total-cost">Total: </p>
+      <p className="total-cost">
+        Total:
+        {(cartItemElements.length * 5.99).toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        })}
+      </p>
       <div className="order-button">
         <button>Place Order</button>
       </div>
