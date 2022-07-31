@@ -1,13 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Context } from '../Context';
 import CartItem from '../components/CartItem';
 
 function Cart() {
-  const { cartItems } = useContext(Context);
+  const { cartItems, setCartItems } = useContext(Context);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const cartItemElements = cartItems.map((item) => (
     <CartItem key={item.id} item={item} />
   ));
+
+  function placeOrder() {
+    setIsProcessing(true);
+    setTimeout(() => {
+      setCartItems([]);
+      setIsProcessing(false);
+    }, 3000);
+  }
 
   return (
     <main className="cart-page">
@@ -21,7 +30,9 @@ function Cart() {
         })}
       </p>
       <div className="order-button">
-        <button>Place Order</button>
+        <button onClick={placeOrder}>
+          {isProcessing ? 'Ordering...' : 'Place Order'}
+        </button>
       </div>
     </main>
   );

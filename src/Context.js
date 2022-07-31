@@ -48,6 +48,7 @@ function ContextProvider(props) {
         allPhotos,
         toggleFavorite,
         cartItems,
+        setCartItems,
         addToCart,
         isItemInCart,
         removeFromCart,
